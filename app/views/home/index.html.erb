@@ -1,0 +1,32 @@
+<div id="rubysec">
+  <%= render :partial => "header" %> 
+  <section>
+    <div class="new-vulns">
+      <p>Did you find a security bug in a Ruby library?<br/>We want to hear about it!</p>
+      <%= link_to "Report a new vulnerability", new_advisory_path, :class => "btn btn-lg btn-danger"%>
+    </div>
+  </section>
+
+
+  <section class="description">
+    <div class="preamble">
+      <p>We help maintain the following projects:</p>
+    </div>
+    <div class="project">
+      <h2><a href="https://github.com/rubysec/ruby-advisory-db" target="_blank">Ruby Advisory Database <i class="fa fa-github"></i></a></h2>
+      <p>The canonical, community-maintained, plain-text database of security vulnerability advisories affecting Ruby libraries and virtual machines.</p>
+    </div>
+
+    <div class="project">
+      <h2><a href="https://github.com/rubysec/bundler-audit" target="_blank">Bundler-Audit <i class="fa fa-github"></i></a></h2>
+      <p>Free utility that audits your Gemfile.lock against the advisory database.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="disclaimer">
+      <p>Supported by <a href="https://appcanary.com"><%= image_tag "appcanary-hero.png", title: "Appcanary", width: "150px" %></a></p>
+      <p class="acknowledgement">This domain was graciously donated by Jordi Massaguer.</p>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,104 @@
+<%= form_for advisory, :url => preview_advisory_path, :html => {:id => "advisory-form", :class => ""} do |f| %>
+  <div class="form-group required">
+    <%= f.label :gem, :class => "control-label" %>
+    <div class="form-field">
+      <%= f.text_field :gem, :class => "form-control", :required => "required" %>
+      <span class="help-block">The name of the gem, as seen in <a href="http://rubygems.org">Rubygems</a>.</span>
+    </div>
+  </div>
+
+  <div class="form-group required">
+    <%= f.label :date, :class => "control-label"  %>
+    <div class="form-field">
+
+      <%= f.date_field :date, :class => "form-control", :required => "required" %>
+      <span class="help-block">The date this vulnerability was disclosed to the library author or community.</span>
+    </div>
+  </div>
+
+
+  <div class="form-group required">
+    <%= f.label :url, "URL", :class => "control-label"  %>
+    <div class="form-field">
+
+      <%= f.url_field :url, :class => "form-control", :required => "required"  %>
+      <span class="help-block">A link to a blog post, mailing list, github issue, etc that describes this vulnerability.</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :cve, "CVE", :class => "control-label"  %>
+    <div class="form-field">
+
+      <%= f.text_field :cve, :class => "form-control" %>
+      <span class="help-block">Have you been assigned a unique CVE identifier? If you haven't, we'll get you one. </span>
+    </div>
+  </div>
+
+
+  <div class="form-group required">
+    <%= f.label :title, :class => "control-label"  %>
+    <div class="form-field">
+
+      <%= f.text_field :title, :class => "form-control", :placeholder => "i.e. XSS in [name of gem]", :required => "required" %>
+      <span class="help-block">A short sentence: what kind of bug affects what gem?</span>
+    </div>
+  </div>
+
+  <div class="form-group required">
+    <%= f.label :description, :class => "control-label"  %>
+    <div class="form-field">
+
+      <%= f.text_area :description, :class => "form-control", :placeholder => "i.e. A flaw in how [name of gem] sanitizes user input may allow an attacker to insert maliciously crafted html and javascript.", :required => "required"  %>
+      <span class="help-block">One or two paragraphs describing the issue. A good description explains what the flaw is, and why the reader should care. A <i>great</i> description provides more context and possible workarounds.</span>
+    </div>
+  </div>
+
+  <div class="form-group versions">
+    <%= f.label :unaffected_versions, :class => "control-label"  %>
+    <div class="form-field">
+
+      <%= f.text_area :unaffected_versions, :class => "form-control fixed-width", :placeholder => "> 1.2.3\n>= 1.2.4\n< 2.3.4\n<= 2.3.3\n~> 2.2.2" %>
+      <span class="help-block">Are there versions of this gem that are unaffected by the vulnerability?<br/><br/> Please provide line separated Gem <a href="http://ruby-doc.org/stdlib-2.3.0/libdoc/rubygems/rdoc/Gem/Requirement.html">version requirements</a>. Use any operator as appropriate, including the <a href="https://robots.thoughtbot.com/rubys-pessimistic-operator">pessimistic one</a>.</span>
+    </div>
+  </div>
+
+  <div class="form-group versions">
+    <%= f.label :patched_versions, :class => "control-label"  %>
+    <div class="form-field">
+
+      <%= f.text_area :patched_versions, :class => "form-control fixed-width", :placeholder => "> 1.2.3\n>= 1.2.4\n< 2.3.4\n<= 2.3.3\n~> 2.2.2" %>
+      <span class="help-block">Has the library released any patches?<br/><br/> Please provide line separated Gem <a href="http://ruby-doc.org/stdlib-2.3.0/libdoc/rubygems/rdoc/Gem/Requirement.html">version requirements</a>. Use any operator as appropriate, including the <a href="https://robots.thoughtbot.com/rubys-pessimistic-operator">pessimistic one</a>.</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :related, :class => "control-label"  %>
+    <div class="form-field">
+
+      <%= f.text_area :related, :class => "form-control" %>
+      <span class="help-block">Any additional links that might provide more context, i.e. github commits.</span>
+    </div>
+  </div>
+
+  <div class="form-group required">
+    <%= f.label :submitter_email, "Your email", :class => "control-label"  %>
+    <div class="form-field">
+
+      <%= f.email_field :submitter_email, :class => "form-control", :placeholder => "jane@example.com", :required => "required" %>
+      <span class="help-block">We might have to contact you in case things are unclear.</span>
+    </div>
+  </div>
+
+
+
+  <div class="form-group">
+
+    <%= f.submit "Preview", :class => "btn btn-lg btn-primary" %>
+    <% if @submit %>
+      <%= f.submit "Submit for review", :id => "submit-review", :class => "btn btn-lg btn-danger", :formaction => create_advisory_path %>
+    <% end %>
+  </div>
+
+<% end %>
+

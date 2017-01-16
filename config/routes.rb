@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root "home#index", :as => :root
+
+  get "/new" => "home#new", :as => :new_advisory
+  post "/preview" => "home#preview", :as => :preview_advisory
+  post "/create" => "home#create", :as => :create_advisory
 end

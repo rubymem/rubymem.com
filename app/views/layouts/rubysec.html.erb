@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rubysec</title>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render :partial => "layouts/typekit" %> 
+    <%= stylesheet_link_tag    'rubysec', media: 'all'%>
+    <%= javascript_include_tag 'rubysec' %>
 
     <%= csrf_meta_tags %>
 

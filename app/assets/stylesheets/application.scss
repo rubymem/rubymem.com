@@ -1,0 +1,108 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@import "font-awesome";
+
+section {
+  @include make-row();
+}
+
+#rubysec {
+  .fixed-width {
+    font-family: "Bitstream Vera Sans Mono", monospace;
+  }
+
+  margin-top: 20px;
+  font-size: 18px;
+  .header {
+    .rubyseclogo {
+      @extend .col-sm-2;
+      img {
+        width: 100%;
+      }
+    }
+
+    .title {
+      h1 a {
+        color: black;
+      }
+      @extend .col-sm-8;
+      p {
+        font-weight: 300;
+      }
+    }
+
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .description {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 2em;
+    a{color:#4183c4;text-decoration:none;}
+    a:hover{color:#4183c4;text-decoration:underline;}
+
+    .preamble {
+      @extend .col-sm-12;
+      p {
+        margin-top: 1em;
+      }
+    }
+
+    .project {
+      @extend .col-sm-6;
+      padding-right: 1em;
+    }
+  }
+
+  
+  .new-vulns {
+    padding-top: 1em;
+    padding-bottom: 2em;
+    @extend .col-sm-6;
+    @extend .col-sm-offset-3;
+    text-align: center;
+  }
+
+
+  .new-vuln {
+    @extend .col-sm-6;
+    padding-bottom: 2em;
+    p, ol {
+      width: 30em;
+    }
+
+    li {
+      padding-top: 0.5em;
+    }
+
+  }
+  #advisory-form {
+    .form-group.required .control-label:after { 
+      content:"*";
+      color:red;
+    }
+
+    #rubysec_advisory_description {
+      min-height: 15em;
+    }
+
+    .versions textarea {
+      min-height: 8em;
+    }
+  }
+
+
+  .disclaimer {
+    @extend .col-sm-12;
+    padding-top: 1em;
+    text-align: center;
+    a{color:#4183c4;text-decoration:none;}
+    a:hover{color:#4183c4;text-decoration:underline;}
+    .acknowledgement {
+      font-size: 14px;
+    }
+  }
+
+}

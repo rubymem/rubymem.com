@@ -1,0 +1,25 @@
+<div id="rubysec">
+  <%= render :partial => "header" %>
+  <section>
+
+    <div class="col-sm-6">
+      <h3>Advisory form</h3>
+      <%= render :partial => "form", :locals => { :advisory => @advisory } %>
+    </div>
+
+
+    <div class="col-sm-6">
+      <h3>Advisory YAML</h3>
+      <p>Here is what you submission will look like. Please revise, and edit it if anything looks out of place.</p>
+      <pre>
+<%= @preview %>
+      </pre>
+
+      <p><strong>Your email:</strong> <%= @advisory.submitter_email %></p>
+      <p>If you know what you're doing, feel free to submit the above directly as a pull request to the <a href="https://github.com/rubysec/ruby-advisory-db">GitHub repository</a>.</p>
+      <p>If this looks right, hit submit!</p>
+      <%= link_to "Submit for review", "", :id => "submit-review-link", :class => "btn btn-lg btn-danger" %>
+    </div>
+
+  </section>
+</div>
