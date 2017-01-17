@@ -40,6 +40,8 @@ gem "font-awesome-rails"
 # monitoring
 gem 'sentry-raven', '~> 0.13.3'
 
+gem 'whenever', :require => false
+
 # deployment
 gem 'unicorn-rails'
 gem 'capistrano', '~> 3.4.0'
