@@ -8,7 +8,7 @@ stdout_path "#{app_path}/log/unicorn.log"
 listen "/tmp/canary.sock", :backlog => 64
 listen "localhost:8080", :tcp_nopush => true
 
-worker_processes 2
+worker_processes 1
 timeout 30
 
 # Force the bundler gemfile environment variable to
