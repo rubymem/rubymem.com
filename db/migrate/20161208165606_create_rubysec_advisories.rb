@@ -2,10 +2,10 @@ class CreateRubysecAdvisories < ActiveRecord::Migration
   def change
     create_table :rubysec_advisories do |t|
       t.string :ident, index: true
+      t.string :identifier, index: true
       t.string :gem
-      t.string :framework
-      t.string :platform
       t.string :cve
+      t.string :osvdb
       t.string :url
       t.string :title
       t.date :date
@@ -16,7 +16,7 @@ class CreateRubysecAdvisories < ActiveRecord::Migration
       t.text :patched_versions
       t.text :related
       t.string :submitter_email
-
+      t.boolean :imported, default: false, index: true
       t.timestamps null: false
     end
   end

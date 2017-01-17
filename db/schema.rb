@@ -17,10 +17,10 @@ ActiveRecord::Schema.define(version: 20161208165606) do
 
   create_table "rubysec_advisories", force: :cascade do |t|
     t.string   "ident"
+    t.string   "identifier"
     t.string   "gem"
-    t.string   "framework"
-    t.string   "platform"
     t.string   "cve"
+    t.string   "osvdb"
     t.string   "url"
     t.string   "title"
     t.date     "date"
@@ -31,9 +31,12 @@ ActiveRecord::Schema.define(version: 20161208165606) do
     t.text     "patched_versions"
     t.text     "related"
     t.string   "submitter_email"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.boolean  "imported",            default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.index ["ident"], name: "index_rubysec_advisories_on_ident", using: :btree
+    t.index ["identifier"], name: "index_rubysec_advisories_on_identifier", using: :btree
+    t.index ["imported"], name: "index_rubysec_advisories_on_imported", using: :btree
   end
 
 end
