@@ -15,6 +15,12 @@ class HomeController < ApplicationController
     RubysecMailer.new_advisory(@advisory.id).deliver_now
   end
 
+  def feed
+    @advisories = RubysecAdvisory.where(imported: true).order(date: :desc).limit(20)
+    @updated_at = @advisories.first.updated_at
+    render :atom
+  end
+
   def advisory_params
     params.require(:rubysec_advisory).
       permit(:gem, :framework, :platform, 

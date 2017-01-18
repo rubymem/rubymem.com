@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[RubySec]]></title>
+  <link href="https://rubysec.com/atom.xml" rel="self"/>
+  <link href="https://rubysec.com/"/>
+  <updated><%= @updated_at %></updated>
+  <id>https://rubysec.com</id>
+  <author>
+    <name><![CDATA[RubySec]]></name>
+    <email><![CDATA[info@rubysec.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  <% @advisories.each do |adv| %>
+  <entry>
+    <title type="html"><![CDATA[<%=adv.title%>]]></title>
+    <link href="{{ site.url }}{{ post.url }}"/>
+    <updated><%= adv.date %></updated>
+    <id>{{ site.url }}{{ post.id }}</id>
+  </entry>
+  <% end %>
+</feed>
