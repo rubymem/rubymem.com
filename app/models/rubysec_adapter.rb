@@ -4,7 +4,7 @@ class RubysecAdapter < AdvisoryAdapter.new(:filepath, :gem, :cve,
                                            :cvss_v3, :patched_versions, :unaffected_versions, 
                                            :related)
   def identifier
-    filepath.split("/")[-2..-1].join("/")
+    filepath.split("/")[-2..-1].join("-").gsub(".yml", "")
   end
 
   def to_h

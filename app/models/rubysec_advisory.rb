@@ -14,9 +14,10 @@
 #  description         :text
 #  cvss_v2             :string
 #  cvss_v3             :string
-#  unaffected_versions :text
-#  patched_versions    :text
-#  related             :text
+#  unaffected_versions :text             default("{}"), is an Array
+#  patched_versions    :text             default("{}"), is an Array
+#  related             :hstore           default("")
+#  related_links       :text             default("{}"), is an Array
 #  submitter_email     :string
 #  imported            :boolean          default("false")
 #  created_at          :datetime         not null

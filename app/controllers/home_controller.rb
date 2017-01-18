@@ -4,7 +4,7 @@ class HomeController < ApplicationController
  
   def feed
     @advisories = RubysecAdvisory.imported.recent.limit(20)
-    @updated_at = @advisories.first.updated_at
+    @updated_at = @advisories.first.try(:updated_at)
     render :atom
   end
 end

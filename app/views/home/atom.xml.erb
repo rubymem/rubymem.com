@@ -15,9 +15,9 @@
   <% @advisories.each do |adv| %>
   <entry>
     <title type="html"><![CDATA[<%=adv.title%>]]></title>
-    <link href="{{ site.url }}{{ post.url }}"/>
+    <link href="<%= advisory_url(adv) %>"/>
     <updated><%= adv.date %></updated>
-    <id>{{ site.url }}{{ post.id }}</id>
+    <id><%= adv.identifier %></id>
   </entry>
   <% end %>
 </feed>

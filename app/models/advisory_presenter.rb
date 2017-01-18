@@ -12,15 +12,15 @@ class AdvisoryPresenter
   end
 
   def unaffected_versions
-    @advisory.unaffected_versions.join("\n")
+    @advisory.unaffected_versions.try(:join, "\n")
   end
 
   def patched_versions
-    @advisory.patched_versions.join("\n")
+    @advisory.patched_versions.try(:join, "\n")
   end
 
   def related_links
-    @advisory.related_links.join("\n")
+    @advisory.related_links.try(:join, "\n")
   end
 
 end

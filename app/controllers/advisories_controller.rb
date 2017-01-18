@@ -4,7 +4,7 @@ class AdvisoriesController < ApplicationController
   end
 
   def show
-    @advisory = RubysecAdvisory.where(:identifier => id_with_yml(params[:id])).take!
+    @advisory = RubysecAdvisory.where(:identifier => params[:id]).take!
   end
 
   def preview
@@ -31,10 +31,6 @@ class AdvisoriesController < ApplicationController
              :date, :description, :cvss_v2, 
              :cvss_v3, :unaffected_versions, 
              :patched_versions, :related_links, :submitter_email)
-  end
-
-  def id_with_yml(str)
-    "#{str}.yml"
   end
 
   def processed_params
