@@ -1,5 +1,5 @@
 <div id="rubysec">
-  <%= render :partial => "header" %> 
+  <%= render :partial => "shared/header" %> 
   <section>
     <div class="new-vulns">
       <p>Did you find a security bug in a Ruby library?<br/>We want to hear about it!</p>
@@ -15,6 +15,7 @@
     <div class="project">
       <h2><a href="https://github.com/rubysec/ruby-advisory-db" target="_blank">Ruby Advisory Database <i class="fa fa-github"></i></a></h2>
       <p>The canonical, community-maintained, plain-text database of security vulnerability advisories affecting Ruby libraries and virtual machines.</p>
+      <p>Receive updates via <%=link_to "atom", feed_path %> or <%= link_to "browse the database", advisories_path %>.</p>
     </div>
 
     <div class="project">
@@ -23,10 +24,12 @@
     </div>
   </section>
 
-  <section>
+
+  <section class="footer">
     <div class="disclaimer">
       <p>Supported by <a href="https://appcanary.com"><%= image_tag "appcanary-hero.png", title: "Appcanary", width: "150px" %></a></p>
       <p class="acknowledgement">This domain was graciously donated by Jordi Massaguer.</p>
     </div>
   </section>
+
 </div>

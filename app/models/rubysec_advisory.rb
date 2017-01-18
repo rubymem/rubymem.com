@@ -42,17 +42,22 @@ class RubysecAdvisory < ActiveRecord::Base
                 "cvss_v3",
                 "unaffected_versions",
                 "patched_versions",
-                "related"]
+                "related",
+                "related_links"]
+
+  scope :recent, -> { order(date: :desc) }
+  scope :imported, -> { where(imported: true) }
 
   def generate_yaml
-    self.attributes.slice(*ATTRIBUTES).tap do |hsh|
-      ["unaffected_versions", "patched_versions", "related"].each do |k|
-        hsh[k] = hsh[k].lines.map(&:strip)
-      end
-    end.compact.to_yaml
+    self.attributes.slice(*ATTRIBUTES)
+      .reject { |k,v| v.blank? }.to_yaml
   end
 
   def relevant_attributes
     self.attributes.except("id", "ident", "updated_at", "created_at")
+  end
+
+  def to_param
+    identifier.split(".")[0]
   end
 end

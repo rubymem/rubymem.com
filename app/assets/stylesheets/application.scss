@@ -84,7 +84,7 @@ section {
       color:red;
     }
 
-    #rubysec_advisory_description {
+    #advisory_presenter_description {
       min-height: 15em;
     }
 
@@ -104,5 +104,16 @@ section {
       font-size: 14px;
     }
   }
+
+  // .recent_advisories {
+  //   @extend .col-sm-6;
+  //   @extend .col-sm-offset-3;
+  // }
+
+  // .footer {
+  //   border-top: 1px solid #eee;
+  //   margin-top: 2em;
+
+  // }
 
 }

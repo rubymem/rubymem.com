@@ -1,11 +1,11 @@
 <div id="rubysec">
-  <%= render :partial => "header" %> 
+  <%= render :partial => "shared/header" %> 
 
   <section>
 
     <div class="new-vuln">
       <h3>Advisory form</h3>
-      <%= render :partial => "form", :locals => { :advisory => RubysecAdvisory.new } %>
+      <%= render :partial => "form", :locals => { :presenter => AdvisoryPresenter.new(RubysecAdvisory.new) } %>
     </div>
 
     <div class="new-vuln">

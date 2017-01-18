@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 20161208165606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "rubysec_advisories", force: :cascade do |t|
     t.string   "ident"
@@ -27,9 +28,10 @@ ActiveRecord::Schema.define(version: 20161208165606) do
     t.text     "description"
     t.string   "cvss_v2"
     t.string   "cvss_v3"
-    t.text     "unaffected_versions"
-    t.text     "patched_versions"
-    t.text     "related"
+    t.text     "unaffected_versions", default: [],                 array: true
+    t.text     "patched_versions",    default: [],                 array: true
+    t.hstore   "related",             default: {}
+    t.text     "related_links",       default: [],                 array: true
     t.string   "submitter_email"
     t.boolean  "imported",            default: false
     t.datetime "created_at",                          null: false

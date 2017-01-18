@@ -1,4 +1,4 @@
-<%= form_for advisory, :url => preview_advisory_path, :html => {:id => "advisory-form", :class => ""} do |f| %>
+<%= form_for presenter, :url => preview_advisories_path, :html => {:id => "advisory-form", :class => ""} do |f| %>
   <div class="form-group required">
     <%= f.label :gem, :class => "control-label" %>
     <div class="form-field">
@@ -73,10 +73,10 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :related, :class => "control-label"  %>
+    <%= f.label :related_links, :class => "control-label"  %>
     <div class="form-field">
 
-      <%= f.text_area :related, :class => "form-control" %>
+      <%= f.text_area :related_links, :class => "form-control" %>
       <span class="help-block">Any additional links that might provide more context, i.e. github commits.</span>
     </div>
   </div>
@@ -96,7 +96,7 @@
 
     <%= f.submit "Preview", :class => "btn btn-lg btn-primary" %>
     <% if @submit %>
-      <%= f.submit "Submit for review", :id => "submit-review", :class => "btn btn-lg btn-danger", :formaction => create_advisory_path %>
+      <%= f.submit "Submit for review", :id => "submit-review", :class => "btn btn-lg btn-danger", :formaction => advisories_path %>
     <% end %>
   </div>
 

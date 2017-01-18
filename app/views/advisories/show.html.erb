@@ -1,0 +1,11 @@
+<div id="rubysec">
+  <%= render :partial => "shared/header" %> 
+
+  <h1>Advisory Archive</h1>
+  <p><%= link_to "Back", advisories_path %></p>
+
+<pre>
+<%= @advisory.generate_yaml %>
+</pre>
+</div>
+

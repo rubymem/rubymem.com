@@ -1,10 +1,10 @@
 <div id="rubysec">
-  <%= render :partial => "header" %>
+  <%= render :partial => "shared/header" %>
   <section>
 
     <div class="col-sm-6">
       <h3>Advisory form</h3>
-      <%= render :partial => "form", :locals => { :advisory => @advisory } %>
+      <%= render :partial => "form", :locals => { :presenter => @presenter } %>
     </div>
 
 

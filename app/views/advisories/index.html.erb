@@ -1,0 +1,44 @@
+<div id="rubysec">
+  <%= render :partial => "shared/header" %> 
+
+  <section>
+    <h1>Advisory Archive</h1>
+    <table class="table">
+      <thead>
+        <th class="col-sm-2">
+          Date
+        </th>
+        <th>
+          Rubygem
+        </th>
+
+        <th>
+          Title
+        </th>
+
+        <th class="col-sm-2">
+          CVE
+        </th>
+
+      </thead>
+      <% @advisories.each do |adv| %>
+        <tr>
+          <td>
+            <%= adv.date.iso8601 %>
+          </td>
+          <td>
+            <%= adv.gem %>
+          </td>
+          <td>
+            <%= link_to adv.title, advisory_path(adv) %>
+          </td>
+          <td>
+            <%= adv.cve %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+
+    <%= will_paginate @advisories, renderer: BootstrapPagination::Rails %>
+  </section>
+</div>
