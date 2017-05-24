@@ -1,8 +1,8 @@
 # rubysec.com
 
-Rails app that powers rubysec.com
+Rails app that powers [rubysec.com](https://rubysec.com).
 
-Pull requests welcome. 
+Pull requests welcome.
 
 ## Setup
 
