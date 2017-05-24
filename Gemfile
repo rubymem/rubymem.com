@@ -56,6 +56,7 @@ gem 'binding_of_caller'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'rb-readline'
   gem 'pry-byebug'
   gem 'better_errors'
 
