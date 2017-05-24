@@ -15,7 +15,7 @@ Requires ruby-2.3.1
 ### Load advisory database
 ```ruby
 # inside a console
-RubyImporter.new.import!
+RubysecImporter.new.import!
 ```
 
 ### Run the tests
