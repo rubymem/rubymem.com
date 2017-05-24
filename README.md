@@ -1,8 +1,8 @@
 # rubysec.com
 
-Rails app that powers rubysec.com
+Rails app that powers [rubysec.com](https://rubysec.com).
 
-Pull requests welcome. 
+Pull requests welcome.
 
 ## Setup
 
@@ -15,7 +15,7 @@ Requires ruby-2.3.1
 ### Load advisory database
 ```ruby
 # inside a console
-RubyImporter.new.import!
+RubysecImporter.new.import!
 ```
 
 ### Run the tests
