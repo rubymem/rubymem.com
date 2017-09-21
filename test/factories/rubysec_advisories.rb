@@ -8,7 +8,7 @@ FactoryGirl.define do
   end
 
   factory :rubysec_advisory do
-    identifier { "#{gem}/#{cve}.yml" }
+    identifier { "#{gem}-#{cve}" }
     gem
     cve
     date { rand(1..99).weeks.ago }

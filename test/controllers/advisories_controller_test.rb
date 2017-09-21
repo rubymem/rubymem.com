@@ -20,21 +20,20 @@ class AdvisoriesControllerTest < ActionDispatch::IntegrationTest
 
   test "should post preview" do
     post preview_advisories_path, params: advisory_params
-     
+
     assert_response :success
   end
 
   test "should create advisories" do
     assert_equal 0, RubysecAdvisory.count
     post advisories_path, params: advisory_params
- 
+
     assert_equal 1, RubysecAdvisory.count
     assert_response :success
 
     # we parsed out line separated strings properly
     adv = RubysecAdvisory.first
-    
-    assert_equal 2, adv.unaffected_versions.count
+
     assert_equal 3, adv.unaffected_versions.count
   end
 
