@@ -5,7 +5,9 @@ require_relative 'config/application'
 
 Rails.application.load_tasks
 
-require 'bundler/audit/task'
-Bundler::Audit::Task.new
+unless Rails.env.production?
+  require 'bundler/audit/task'
+  Bundler::Audit::Task.new
+end
 
 task default: 'bundle:audit'
