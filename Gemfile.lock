@@ -56,6 +56,9 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.3)
+    bundler-audit (0.6.0)
+      bundler (~> 1.2)
+      thor (~> 0.18)
     byebug (9.0.6)
     capistrano (3.4.1)
       i18n
@@ -115,7 +118,7 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mini_portile2 (2.1.0)
+    mini_portile2 (2.3.0)
     minitest (5.10.1)
     minitest-reporters (1.1.13)
       ansi
@@ -131,8 +134,8 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (4.0.1)
     nio4r (1.2.1)
-    nokogiri (1.7.0.1)
-      mini_portile2 (~> 2.1.0)
+    nokogiri (1.8.1)
+      mini_portile2 (~> 2.3.0)
     pg (0.19.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -234,6 +237,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
+  bundler-audit
   capistrano (~> 3.4.0)
   capistrano-bundler (~> 1.1.2)
   capistrano-deploytags (~> 1.0.0)
@@ -266,4 +270,4 @@ DEPENDENCIES
   will_paginate-bootstrap
 
 BUNDLED WITH
-   1.14.6
+   1.15.4
