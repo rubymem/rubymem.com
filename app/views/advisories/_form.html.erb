@@ -12,7 +12,7 @@
     <div class="form-field">
 
       <%= f.date_field :date, :class => "form-control", :required => "required" %>
-      <span class="help-block">The date this vulnerability was disclosed to the library author or community.</span>
+      <span class="help-block">The date this leak was disclosed to the library author or community.</span>
     </div>
   </div>
 
@@ -25,16 +25,6 @@
       <span class="help-block">A link to a blog post, mailing list, github issue, etc that describes this vulnerability.</span>
     </div>
   </div>
-
-  <div class="form-group">
-    <%= f.label :cve, "CVE", :class => "control-label"  %>
-    <div class="form-field">
-
-      <%= f.text_field :cve, :class => "form-control" %>
-      <span class="help-block">Have you been assigned a unique CVE identifier? If you haven't, we'll get you one. </span>
-    </div>
-  </div>
-
 
   <div class="form-group required">
     <%= f.label :title, :class => "control-label"  %>
@@ -101,4 +91,3 @@
   </div>
 
 <% end %>
-

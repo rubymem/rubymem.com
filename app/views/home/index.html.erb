@@ -1,9 +1,9 @@
 <div id="rubysec">
-  <%= render :partial => "shared/header" %> 
+  <%= render :partial => "shared/header" %>
   <section>
     <div class="new-vulns">
-      <p>Did you find a security bug in a Ruby library?<br/>We want to hear about it!</p>
-      <%= link_to "Report a new vulnerability", new_advisory_path, :class => "btn btn-lg btn-danger"%>
+      <p>Did you find a leaky gem or library?<br/>We want to hear about it!</p>
+      <%= link_to "Report a new leaky gem", new_advisory_path, :class => "btn btn-lg btn-danger"%>
     </div>
   </section>
 
@@ -13,13 +13,13 @@
       <p>We help maintain the following projects:</p>
     </div>
     <div class="project">
-      <h2><a href="https://github.com/rubysec/ruby-advisory-db" target="_blank">Ruby Advisory Database <i class="fa fa-github"></i></a></h2>
-      <p>The canonical, community-maintained, plain-text database of security vulnerability advisories affecting Ruby libraries and virtual machines.</p>
+      <h2><a href="https://github.com/rubymem/ruby-mem-advisory-db" target="_blank">Ruby Memory Advisory Database <i class="fa fa-github"></i></a></h2>
+      <p>The canonical, community-maintained, plain-text database of leaky gems affecting Ruby applications.</p>
       <p>Receive updates via <%=link_to "atom", feed_path %> or <%= link_to "browse the database", advisories_path %>.</p>
     </div>
 
     <div class="project">
-      <h2><a href="https://github.com/rubysec/bundler-audit" target="_blank">Bundler-Audit <i class="fa fa-github"></i></a></h2>
+      <h2><a href="https://github.com/rubymem/bundler-leak" target="_blank">Bundler-Leak <i class="fa fa-github"></i></a></h2>
       <p>Free utility that audits your Gemfile.lock against the advisory database.</p>
     </div>
   </section>
