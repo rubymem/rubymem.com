@@ -10,24 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208165606) do
+ActiveRecord::Schema.define(version: 20190605182812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
 
-  create_table "rubysec_advisories", force: :cascade do |t|
+  create_table "rubymem_leaky_gems", force: :cascade do |t|
     t.string   "ident"
     t.string   "identifier"
     t.string   "gem"
-    t.string   "cve"
-    t.string   "osvdb"
     t.string   "url"
     t.string   "title"
     t.date     "date"
     t.text     "description"
-    t.string   "cvss_v2"
-    t.string   "cvss_v3"
     t.text     "unaffected_versions", default: [],                 array: true
     t.text     "patched_versions",    default: [],                 array: true
     t.hstore   "related",             default: {}
@@ -36,9 +32,9 @@ ActiveRecord::Schema.define(version: 20161208165606) do
     t.boolean  "imported",            default: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["ident"], name: "index_rubysec_advisories_on_ident", using: :btree
-    t.index ["identifier"], name: "index_rubysec_advisories_on_identifier", using: :btree
-    t.index ["imported"], name: "index_rubysec_advisories_on_imported", using: :btree
+    t.index ["ident"], name: "index_rubymem_leaky_gems_on_ident", using: :btree
+    t.index ["identifier"], name: "index_rubymem_leaky_gems_on_identifier", using: :btree
+    t.index ["imported"], name: "index_rubymem_leaky_gems_on_imported", using: :btree
   end
 
 end
