@@ -1,7 +1,7 @@
 default: &default
   adapter: postgresql
   host: localhost
-  user: rails
+  user: postgres
 
 development:
   <<: *default
