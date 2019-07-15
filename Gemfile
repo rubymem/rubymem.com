@@ -42,7 +42,7 @@ gem 'sentry-raven', '~> 0.13.3'
 gem 'whenever', :require => false
 
 # deployment
-gem 'unicorn-rails'
+gem 'puma', '~> 4.0'
 gem 'capistrano', '~> 3.4.0'
 gem 'capistrano-rails', '~> 1.1'
 gem 'capistrano-bundler', '~> 1.1.2'
