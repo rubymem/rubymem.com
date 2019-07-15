@@ -36,9 +36,6 @@ gem "font-awesome-rails"
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 
-# monitoring
-gem 'sentry-raven', '~> 0.13.3'
-
 gem 'whenever', :require => false
 
 # deployment
@@ -52,7 +49,6 @@ gem 'capistrano-deploytags', '~> 1.0.0'
 # dev tools
 gem 'pry-rails'
 gem 'binding_of_caller'
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
