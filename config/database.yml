@@ -1,7 +1,6 @@
 default: &default
   adapter: postgresql
   host: localhost
-  user: postgres
 
 development:
   <<: *default
@@ -16,4 +15,5 @@ test:
 
 production:
   <<: *default
+  user: rubymem
   database: rubymem-prod
