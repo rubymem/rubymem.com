@@ -1,19 +1,15 @@
 # == Schema Information
 #
-# Table name: rubysec_advisories
+# Table name: rubymem_advisories
 #
 #  id                  :integer          not null, primary key
 #  ident               :string
 #  identifier          :string
 #  gem                 :string
-#  cve                 :string
-#  osvdb               :string
 #  url                 :string
 #  title               :string
 #  date                :date
 #  description         :text
-#  cvss_v2             :string
-#  cvss_v3             :string
 #  unaffected_versions :text             default("{}"), is an Array
 #  patched_versions    :text             default("{}"), is an Array
 #  related             :hstore           default("")
@@ -25,22 +21,19 @@
 #
 # Indexes
 #
-#  index_rubysec_advisories_on_ident       (ident)
-#  index_rubysec_advisories_on_identifier  (identifier)
-#  index_rubysec_advisories_on_imported    (imported)
+#  index_rubymem_advisories_on_ident       (ident)
+#  index_rubymem_advisories_on_identifier  (identifier)
+#  index_rubymem_advisories_on_imported    (imported)
 #
 
-class RubysecAdvisory < ActiveRecord::Base
+class RubymemAdvisory < ActiveRecord::Base
   has_secure_token :ident
 
   ATTRIBUTES = ["gem",
                 "date",
                 "url",
-                "cve",
                 "title",
                 "description",
-                "cvss_v2",
-                "cvss_v3",
                 "unaffected_versions",
                 "patched_versions",
                 "related",

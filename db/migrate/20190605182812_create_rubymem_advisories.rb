@@ -1,8 +1,8 @@
-class CreateRubymemLeakyGems < ActiveRecord::Migration[5.0]
+class CreateRubymemAdvisories < ActiveRecord::Migration[5.0]
   def change
     enable_extension 'hstore'
 
-    create_table :rubymem_leaky_gems do |t|
+    create_table :rubymem_advisories do |t|
       t.string :ident, index: true
       t.string :identifier, index: true
       t.string :gem

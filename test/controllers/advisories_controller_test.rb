@@ -25,14 +25,14 @@ class AdvisoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create advisories" do
-    assert_equal 0, RubysecAdvisory.count
+    assert_equal 0, RubymemAdvisory.count
     post advisories_path, params: advisory_params
 
-    assert_equal 1, RubysecAdvisory.count
+    assert_equal 1, RubymemAdvisory.count
     assert_response :success
 
     # we parsed out line separated strings properly
-    adv = RubysecAdvisory.first
+    adv = RubymemAdvisory.first
 
     assert_equal 3, adv.unaffected_versions.count
   end

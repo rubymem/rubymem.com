@@ -1,5 +1,5 @@
 require_relative File.join(Rails.root, 'lib/git_handler')
-class RubysecImporter
+class RubymemImporter
   SOURCE = "rubysec"
   PLATFORM = "ruby"
   REPO_URL = "https://github.com/rubysec/ruby-advisory-db.git"
@@ -20,10 +20,10 @@ class RubysecImporter
 
   def process_advisories(all_advisories)
     all_advisories.each do |new_adv|
-      old_adv = RubysecAdvisory.where(:identifier => new_adv.identifier).first
+      old_adv = RubymemAdvisory.where(:identifier => new_adv.identifier).first
 
       if old_adv.nil?
-        created_adv = RubysecAdvisory.create!(new_adv.to_h)
+        created_adv = RubymemAdvisory.create!(new_adv.to_h)
       else
         old_adv.update_attributes!(new_adv.to_h)
       end
@@ -40,12 +40,12 @@ class RubysecImporter
   end
 
   def fetch_advisories
-    Dir[File.join(local_path, "gems", "/**/**yml")]  
+    Dir[File.join(local_path, "gems", "/**/**yml")]
   end
 
   def parse(ymlfile)
     hsh = YAML.load_file(ymlfile)
     everything = {"filepath" => ymlfile}.merge(hsh)
-    RubysecAdapter.new(everything)
+    RubymemAdapter.new(everything)
   end
 end
