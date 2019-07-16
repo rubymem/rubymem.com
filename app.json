@@ -34,7 +34,6 @@
   },
   "name": "rubymem.com",
   "scripts": {
-    "postdeploy": "bin/setup"
   },
   "stack": "heroku-18"
 }
