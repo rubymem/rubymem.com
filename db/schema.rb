@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20190605182812) do
   enable_extension "plpgsql"
   enable_extension "hstore"
 
-  create_table "rubymem_leaky_gems", force: :cascade do |t|
+  create_table "rubymem_advisories", force: :cascade do |t|
     t.string   "ident"
     t.string   "identifier"
     t.string   "gem"
@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(version: 20190605182812) do
     t.boolean  "imported",            default: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["ident"], name: "index_rubymem_leaky_gems_on_ident", using: :btree
-    t.index ["identifier"], name: "index_rubymem_leaky_gems_on_identifier", using: :btree
-    t.index ["imported"], name: "index_rubymem_leaky_gems_on_imported", using: :btree
+    t.index ["ident"], name: "index_rubymem_advisories_on_ident", using: :btree
+    t.index ["identifier"], name: "index_rubymem_advisories_on_identifier", using: :btree
+    t.index ["imported"], name: "index_rubymem_advisories_on_imported", using: :btree
   end
 
 end
