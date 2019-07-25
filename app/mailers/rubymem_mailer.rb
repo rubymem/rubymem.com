@@ -1,12 +1,12 @@
 class RubymemMailer < ActionMailer::Base
-  default from: "rubysec <noreply@appcanary.com>"
+  default from: "rubymem <noreply@appcanary.com>"
   layout 'mailer'
 
   def new_advisory(advisory_id)
     @advisory = RubymemAdvisory.find(advisory_id)
 
     if Rails.env.production?
-      recipient = "info@rubysec.com"
+      recipient = "info@rubymem.com"
     else
       recipient = "hello@appcanary.com"
     end
