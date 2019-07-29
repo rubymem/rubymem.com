@@ -1,9 +1,9 @@
 require_relative File.join(Rails.root, 'lib/git_handler')
 class RubymemImporter
-  SOURCE = "rubysec"
+  SOURCE = "rubymem"
   PLATFORM = "ruby"
-  REPO_URL = "https://github.com/rubysec/ruby-advisory-db.git"
-  REPO_PATH = "tmp/importers/rubysec"
+  REPO_URL = "https://github.com/rubymem/ruby-advisory-db.git"
+  REPO_PATH = "tmp/importers/rubymem"
 
   def initialize(repo_path = nil, repo_url = nil)
     @repo_url = repo_url || REPO_URL
