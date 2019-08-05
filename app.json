@@ -25,6 +25,12 @@
     },
     "SECRET_KEY_BASE": {
       "required": true
+    },
+    "SENDGRID_PASSWORD": {
+      "required": true
+    },
+    "SENDGRID_USERNAME": {
+      "required": true
     }
   },
   "formation": {
