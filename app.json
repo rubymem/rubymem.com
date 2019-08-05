@@ -34,6 +34,7 @@
   },
   "name": "rubymem.com",
   "scripts": {
+    "postdeploy": "bundle exec rake db:schema:load"
   },
   "stack": "heroku-18"
 }
