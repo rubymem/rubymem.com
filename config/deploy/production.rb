@@ -1,3 +1,3 @@
-role :app, %w{deploy@rubysec.com}
-role :web, %w{deploy@rubysec.com}
-role :db,  %w{deploy@rubysec.com}
+role :app, %w{deploy@rubymem.com}
+role :web, %w{deploy@rubymem.com}
+role :db,  %w{deploy@rubymem.com}

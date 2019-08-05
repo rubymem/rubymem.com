@@ -1,8 +1,8 @@
 # config valid only for Capistrano 3.1
 lock '3.4.1'
 
-set :application, 'rubysec'
-set :repo_url, 'git@github.com:rubysec/rubysec.com.git'
+set :application, 'rubymem'
+set :repo_url, 'git@github.com:rubymem/rubymem.com.git'
 
 set :rails_env, (fetch(:stage) || fetch(:rails_env))
 # Default branch is :master
@@ -10,7 +10,7 @@ set :rails_env, (fetch(:stage) || fetch(:rails_env))
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/var/www/rubysec'
+set :deploy_to, '/var/www/rubymem'
 
 # Default value for :scm is :git
 # set :scm, :git
