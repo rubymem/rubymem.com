@@ -7,7 +7,7 @@ FactoryGirl.define do
     "gem_number#{n}"
   end
 
-  factory :rubysec_advisory do
+  factory :rubymem_advisory do
     identifier { "#{gem}-#{cve}" }
     gem
     cve

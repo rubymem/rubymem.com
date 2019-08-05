@@ -7,7 +7,7 @@ section {
   @include make-row();
 }
 
-#rubysec {
+#rubymem {
   .fixed-width {
     font-family: "Bitstream Vera Sans Mono", monospace;
   }
@@ -15,7 +15,7 @@ section {
   margin-top: 20px;
   font-size: 18px;
   .header {
-    .rubyseclogo {
+    .rubymemlogo {
       @extend .col-sm-2;
       img {
         width: 100%;

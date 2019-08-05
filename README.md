@@ -1,6 +1,6 @@
-# rubysec.com
+# rubymem.com
 
-Rails app that powers [rubysec.com](https://rubysec.com).
+Rails app that powers [rubymem.com](https://rubymem.com).
 
 Pull requests welcome.
 
