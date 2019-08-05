@@ -1,5 +1,5 @@
 class RubymemMailer < ActionMailer::Base
-  default from: "rubymem <noreply@appcanary.com>"
+  default from: "rubymem <noreply@rubymem.com>"
   layout 'mailer'
 
   def new_advisory(advisory_id)
@@ -8,7 +8,7 @@ class RubymemMailer < ActionMailer::Base
     if Rails.env.production?
       recipient = "info@rubymem.com"
     else
-      recipient = "hello@appcanary.com"
+      recipient = "hello@rubymem.com"
     end
 
     mail(to: recipient, :subject => "New Rubymem submission!") do |format|
