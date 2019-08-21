@@ -40,7 +40,6 @@ class AdvisoriesControllerTest < ActionDispatch::IntegrationTest
   def advisory_params
     {advisory_presenter: {
       gem: "fake",
-      cve: "2016-0001",
       date: "2016-12-31",
       title: "this is a title",
       description: "desc",

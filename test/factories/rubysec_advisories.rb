@@ -1,16 +1,11 @@
 FactoryGirl.define do
-  sequence :cve do |n|
-    "CVE-2016-#{n}"
-  end
-
   sequence :gem do |n|
     "gem_number#{n}"
   end
 
   factory :rubymem_advisory do
-    identifier { "#{gem}-#{cve}" }
+    identifier { gem }
     gem
-    cve
     date { rand(1..99).weeks.ago }
     title "this is a title"
     patched_versions { ["> 1.2.3", "~> 3.2"] }
