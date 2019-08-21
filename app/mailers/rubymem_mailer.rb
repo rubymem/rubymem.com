@@ -8,7 +8,7 @@ class RubymemMailer < ActionMailer::Base
     if Rails.env.production?
       recipient = "rubymem@ombulabs.com"
     else
-      #recipient = "hello@ombulabs.com"
+      recipient = "hello@ombulabs.com"
     end
 
     mail(to: recipient, :subject => "New Rubymem submission!") do |format|
