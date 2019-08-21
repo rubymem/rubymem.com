@@ -1,0 +1,34 @@
+<div id="rubymem">
+  <%= render :partial => "shared/header" %>
+  <section>
+    <div class="new-vulns">
+      <p>Did you find a leaky gem or library?<br/>We want to hear about it!</p>
+      <%= link_to "Report a new leaky gem", new_advisory_path, :class => "btn btn-lg btn-danger"%>
+    </div>
+  </section>
+
+
+  <section class="description">
+    <div class="preamble">
+      <p>We help maintain the following projects:</p>
+    </div>
+    <div class="project">
+      <h2><a href="https://github.com/rubymem/ruby-mem-advisory-db" target="_blank">Ruby Memory Advisory Database <i class="fa fa-github"></i></a></h2>
+      <p>The canonical, community-maintained, plain-text database of leaky gems affecting Ruby applications.</p>
+      <p>Receive updates via <%=link_to "atom", feed_path %> or <%= link_to "browse the database", advisories_path %>.</p>
+    </div>
+
+    <div class="project">
+      <h2><a href="https://github.com/rubymem/bundler-leak" target="_blank">Bundler-Leak <i class="fa fa-github"></i></a></h2>
+      <p>Free utility that audits your Gemfile.lock against the memory advisory database.</p>
+    </div>
+  </section>
+
+
+  <section class="footer">
+    <div class="disclaimer">
+      <p>Supported by <a href="https://fastruby.io"><%= image_tag "fastruby-logo.png", title: "Fastruby", width: "150px" %></a></p>
+    </div>
+  </section>
+
+</div>

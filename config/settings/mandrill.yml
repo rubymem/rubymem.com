@@ -1,0 +1,15 @@
+development:
+  mandrill:
+    api_key: "LOLNOPE"
+    user_name: "anon"
+
+test:
+  mandrill:
+    api_key: "LOLNOPE"
+    user_name: "anon"
+
+production:
+  mandrill:
+    api_key: "this should be replaced by then"
+    user_name: "anon"
+

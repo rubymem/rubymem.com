@@ -1,0 +1,28 @@
+<div id="rubymem">
+  <%= render :partial => "shared/header" %>
+
+  <section>
+
+    <div class="new-vuln">
+      <h3>Advisory form</h3>
+      <%= render :partial => "form", :locals => { :presenter => AdvisoryPresenter.new(RubymemAdvisory.new) } %>
+    </div>
+
+    <div class="new-vuln">
+      <h2>Report a new leak</h2>
+      <p>Hey! Thanks for taking the time to do this. Your submission helps the community. All submissions to this website are ultimately vetted on the <a href="https://github.com/rubymem/ruby-mem-advisory-db">GitHub repository</a>.</p>
+      <h4>Reporting a leak is a simple process.</h4>
+      <ol>
+        <li>
+          If it is a vulnerability, discreetly disclose the flaw to the gem maintainer(s).
+          <br/>
+          Please be polite! Open source maintainers are usually unpaid volunteers, and everyone deserves a little courtesy.
+        </li>
+        <li>Try to figure out what versions are affected by the flaw, and whether a patch can be released.</li>
+        <li>Fill out the form to the left:</li>
+      </ol>
+      <br/>
+    </div>
+
+  </section>
+</div>
