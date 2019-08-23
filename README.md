@@ -1,6 +1,6 @@
-<div style="text-align: center; width: 500px;">
-  <img width="200" height="100" src="/logo/rubymem-logo.png">
-</div>
+<p align="center">
+  <img width="250" height="250" src="/logo/rubymem-logo.png">
+</p>
 
 [![Build Status](https://travis-ci.org/ombulabs/rubymem.com.svg?branch=master)](https://travis-ci.org/ombulabs/rubymem.com)
 
