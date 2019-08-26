@@ -6,8 +6,8 @@ require_relative 'config/application'
 Rails.application.load_tasks
 
 unless Rails.env.production?
-  require 'bundler/audit/task'
-  Bundler::Audit::Task.new
+  require 'bundler/plumber/task'
+  Bundler::Plumber::Task.new
 end
 
-task default: 'bundle:audit'
+task default: 'bundle:leak'
