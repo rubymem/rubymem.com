@@ -43,7 +43,7 @@ group :development, :test do
   gem 'minitest-reporters'
   gem 'faker'
   gem 'factory_girl_rails'
-  gem 'bundler-audit'
+  gem 'bundler-leak'
 end
 
 group :development do
