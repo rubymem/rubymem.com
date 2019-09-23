@@ -1,5 +1,5 @@
 <div id="rubymem">
-  <%= render :partial => "shared/header" %> 
+  <%= render :partial => "shared/header" %>
 
   <section>
     <h1>Advisory Archive</h1>
@@ -16,10 +16,6 @@
           Title
         </th>
 
-        <th class="col-sm-2">
-          CVE
-        </th>
-
       </thead>
       <% @advisories.each do |adv| %>
         <tr>
@@ -31,9 +27,6 @@
           </td>
           <td>
             <%= link_to adv.title, advisory_path(adv) %>
-          </td>
-          <td>
-            <%= adv.cve %>
           </td>
         </tr>
       <% end %>

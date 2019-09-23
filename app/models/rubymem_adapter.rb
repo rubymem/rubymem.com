@@ -1,8 +1,15 @@
-class RubymemAdapter < AdvisoryAdapter.new(:filepath, :gem, :cve,
-                                           :osvdb, :url, :title,
-                                           :date, :description, :cvss_v2,
-                                           :cvss_v3, :patched_versions, :unaffected_versions,
-                                           :related)
+class RubymemAdapter < AdvisoryAdapter.new(
+  :filepath,
+  :gem,
+  :url,
+  :title,
+  :date,
+  :description,
+  :patched_versions,
+  :unaffected_versions,
+  :related
+)
+
   def identifier
     filepath.split("/")[-2..-1].join("-").gsub(".yml", "")
   end
