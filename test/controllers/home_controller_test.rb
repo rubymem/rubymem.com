@@ -7,7 +7,7 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get atom feed" do
-    FactoryGirl.create_list(:rubymem_advisory, 5, imported: true)
+    FactoryBot.create_list(:rubymem_advisory, 5, imported: true)
     get feed_path
     assert_response :success
   end
