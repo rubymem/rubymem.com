@@ -40,7 +40,7 @@ group :development, :test do
   gem 'minitest-spec-rails'
   gem 'minitest-reporters'
   gem 'faker'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'bundler-leak'
 end
 
