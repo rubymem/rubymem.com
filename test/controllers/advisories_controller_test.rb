@@ -2,13 +2,13 @@ require 'test_helper'
 
 class AdvisoriesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    FactoryGirl.create_list(:rubymem_advisory, 5)
+    FactoryBot.create_list(:rubymem_advisory, 5)
     get advisories_path
     assert_response :success
   end
 
   test "should get show" do
-    advisory = FactoryGirl.create(:rubymem_advisory)
+    advisory = FactoryBot.create(:rubymem_advisory)
     get advisory_path(advisory)
     assert_response :success
   end
