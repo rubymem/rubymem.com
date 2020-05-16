@@ -2,25 +2,37 @@
   <img width="250" height="250" src="/logo/rubymem-logo.png">
 </p>
 
-[![Build Status](https://travis-ci.org/ombulabs/rubymem.com.svg?branch=master)](https://travis-ci.org/ombulabs/rubymem.com)
+[![Build Status](https://travis-ci.org/rubymem/rubymem.com.svg?branch=master)](https://travis-ci.org/rubymem/rubymem.com)
 
-Rails app that powers [rubymem.com](https://rubymem.com).
-
-Pull requests welcome.
+This is the Rails app that powers [RubyMem.com](https://RubyMem.com): A website
+to submit new reports about gems which have memory leaks. Also, a nice way to
+browse existing memory leak advisories.
 
 ## Setup
 
-Requires ruby-2.3.1
+Requires ruby-2.5 or higher, and Postgres.
 
-`bundle install`
+    ./bin/setup
 
-`bundle exec rake db:create db:migrate`
+### Seed
 
-### Load advisory database
+Setup steps will take care of this. If you want to reset your database, you
+can remove all records from the database and then call:
+
 ```ruby
-# inside a console
+# ./bin/rails console
 RubymemImporter.new.import!
 ```
 
-### Run the tests
-`bundle exec rake test`
+## Testing
+
+After making changes, make sure you run the test suite:
+
+```
+bundle exec rake test
+```
+
+## Collaboration
+
+New issues and pull requests are welcome. Read our [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) before
+submitting an issue or pull request. Thank you! ❤️
