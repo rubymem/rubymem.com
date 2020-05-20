@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/rubymem/rubymem.com.svg?branch=master)](https://travis-ci.org/rubymem/rubymem.com)
 
-This is the Rails app that powers [RubyMem.com](https://RubyMem.com): A website
+This is the Rails app that powers [RubyMem.com](https://www.RubyMem.com): A website
 to submit new reports about gems which have memory leaks. Also, a nice way to
 browse existing memory leak advisories.
 
