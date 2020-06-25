@@ -38,5 +38,5 @@ New issues and pull requests are welcome. Read our [CODE_OF_CONDUCT.md](CODE_OF_
 submitting an issue or pull request. Thank you! ❤️
 
 ## FastRuby.io
-![fastruby](https://github.com/rubymem/rubymem.com/raw/master/fastruby-logo.png)¬
+![fastruby](https://github.com/rubymem/rubymem.com/raw/master/fastruby-logo.png)
 `rubymem.com` is maintained and funded by FastRuby.io, inc. The names and logos for FastRuby.io are trademarks of FastRuby.io, inc.
