@@ -1,3 +1,6 @@
+def next?
+  File.basename(__FILE__) == "Gemfile.next"
+end
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -5,11 +8,16 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 6.0.0'
+if next?
+  gem 'rails', '~> 6.0.0'
+  gem 'sass-rails', '~> 6.0'
+else
+  gem 'rails', '~> 5.0.1'
+  gem 'sass-rails', '~> 5.0'
+end
 
 gem 'puma', '~> 4.3'
 gem 'pg'
-gem 'sass-rails', '~> 6.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
