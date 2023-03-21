@@ -21,7 +21,7 @@ chdir APP_ROOT do
 
   unless File.exist?('.ruby-version')
     cp '.ruby-version.sample', '.ruby-version'
-    # system! 'cd .'
+    system! 'cd .'
   end
 
   puts '== Installing dependencies =='
