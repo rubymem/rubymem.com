@@ -1,7 +1,5 @@
 {
-  "addons": [
-    "heroku-postgresql"
-  ],
+  "addons": ["heroku-postgresql"],
   "buildpacks": [
     {
       "url": "heroku/ruby"
@@ -42,5 +40,5 @@
   "scripts": {
     "postdeploy": "bundle exec rake db:schema:load"
   },
-  "stack": "heroku-18"
+  "stack": "heroku-22"
 }
