@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: test (${{ matrix.gemfile }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    strategy:
+      fail-fast: false
+      matrix:
+        gemfile: [ Gemfile, Gemfile.next ]
+
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        # The postgres image ships no healthcheck of its own.
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      RAILS_ENV: test
+      PGHOST: localhost
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      BUNDLE_GEMFILE: ${{ matrix.gemfile }}
+      # bin/rails would otherwise boot through the spring binstub.
+      DISABLE_SPRING: 1
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install the PostgreSQL client
+        run: sudo apt-get -yqq install libpq-dev
+
+      # .ruby-version is not committed, the sample is the single source of truth.
+      - name: Pin the Ruby version
+        run: cp .ruby-version.sample .ruby-version
+
+      # bundler-cache runs `bundle install` against BUNDLE_GEMFILE, so each boot
+      # is resolved from its own committed lockfile and cached separately.
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Set up the database
+        run: |
+          cp config/database.yml.sample config/database.yml
+          bin/rails db:create db:schema:load
+
+      - name: Run tests
+        run: bin/rails test
+
+      - name: Run system tests
+        run: bin/rails test:system
