@@ -2,7 +2,7 @@
   <img width="250" height="250" src="/logo/rubymem-logo.png">
 </p>
 
-[![Build Status](https://travis-ci.org/rubymem/rubymem.com.svg?branch=master)](https://travis-ci.org/rubymem/rubymem.com)
+[![CI](https://github.com/rubymem/rubymem.com/actions/workflows/tests.yml/badge.svg)](https://github.com/rubymem/rubymem.com/actions/workflows/tests.yml)
 
 This is the Rails app that powers [RubyMem.com](https://www.RubyMem.com): A website
 to submit new reports about gems which have memory leaks. Also, a nice way to
@@ -10,7 +10,8 @@ browse existing memory leak advisories.
 
 ## Setup
 
-Requires ruby-2.5 or higher, and Postgres.
+Requires the Ruby version in [.ruby-version.sample](.ruby-version.sample), and
+Postgres.
 
     ./bin/setup
 
@@ -29,7 +30,19 @@ RubymemImporter.new.import!
 After making changes, make sure you run the test suite:
 
 ```
-bundle exec rake test
+bin/rails test
+bin/rails test:system
+```
+
+The system tests drive the app through Capybara's `rack_test` driver, so they
+need no browser or driver binaries.
+
+[CI](.github/workflows/tests.yml) runs both commands against Postgres, once per
+boot: `Gemfile` and `Gemfile.next`. To run the suite against the next boot
+locally:
+
+```
+BUNDLE_GEMFILE=Gemfile.next bin/rails test
 ```
 
 ## Collaboration
