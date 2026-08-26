@@ -1,0 +1,11 @@
+---
+gem: leaky_gem
+url: https://github.com/leaky_gem/leaky_gem/issues/670
+title: Memory leak in the connection pool
+date: 2015-08-31
+description: |
+  Connections are never returned to the pool.
+patched_versions:
+  - ">= 0.17.3"
+unaffected_versions:
+  - "< 0.16.0"
