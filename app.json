@@ -40,5 +40,5 @@
   "scripts": {
     "postdeploy": "bundle exec rake db:schema:load"
   },
-  "stack": "heroku-22"
+  "stack": "heroku-26"
 }

@@ -8,7 +8,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '3.1.3'
+ruby '3.4.10'
 
 if next?
   gem 'rails', '~> 7.0.0'
@@ -16,8 +16,21 @@ else
   gem 'rails', '~> 6.1.0'
 end
 
+# Ruby 3.4 moved these stdlib libraries out of the default gems; Rails < 7.1 still
+# requires them implicitly, so they have to be declared here.
+gem 'base64'
+gem 'benchmark'
+gem 'bigdecimal'
+gem 'drb'
+gem 'logger'
+gem 'mutex_m'
+gem 'ostruct'
+# concurrent-ruby >= 1.3.5 dropped its implicit `require "logger"`, which breaks
+# ActiveSupport::LoggerThreadSafeLevel on Rails < 7.1. Unpin after the Rails upgrade.
+gem 'concurrent-ruby', '1.3.4'
+
 gem 'sass-rails', '~> 6.0'
-gem 'puma', '~> 4.3'
+gem 'puma', '~> 6.6'
 gem 'pg'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
@@ -47,6 +60,10 @@ group :development, :test do
   gem 'binding_of_caller'
 
   gem 'capybara'
+
+  # Rails < 7.2 is not compatible with minitest 6 (it drops minitest/mock and
+  # other APIs rails/test_help relies on).
+  gem 'minitest', '~> 5.25'
   gem 'minitest-spec-rails'
   gem 'minitest-reporters'
   gem 'faker'
@@ -55,7 +72,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'listen', '~> 3.0.5'
+  gem 'listen', '~> 3.9'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.1.0'
