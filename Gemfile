@@ -10,13 +10,9 @@ end
 
 ruby '3.4.10'
 
-if next?
-  gem 'rails', '~> 7.0.0'
-else
-  gem 'rails', '~> 6.1.0'
-end
+gem 'rails', '~> 7.0.10'
 
-# Ruby 3.4 moved these stdlib libraries out of the default gems; Rails < 7.1 still
+# Ruby 3.4 moved these stdlib libraries out of the default gems; Rails 7.0 still
 # requires them implicitly, so they have to be declared here.
 gem 'base64'
 gem 'benchmark'
@@ -26,13 +22,13 @@ gem 'logger'
 gem 'mutex_m'
 gem 'ostruct'
 # concurrent-ruby >= 1.3.5 dropped its implicit `require "logger"`, which breaks
-# ActiveSupport::LoggerThreadSafeLevel on Rails < 7.1. Unpin after the Rails upgrade.
+# ActiveSupport::LoggerThreadSafeLevel on Rails 7.0. Unpin on Rails 7.1+.
 gem 'concurrent-ruby', '1.3.4'
 
 gem 'sass-rails', '~> 6.0'
 gem 'puma', '~> 6.6'
 gem 'pg'
-gem 'uglifier', '>= 1.3.0'
+gem 'terser'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
@@ -61,7 +57,7 @@ group :development, :test do
 
   gem 'capybara'
 
-  # Rails < 7.2 is not compatible with minitest 6 (it drops minitest/mock and
+  # Rails 7.0 is not compatible with minitest 6 (it drops minitest/mock and
   # other APIs rails/test_help relies on).
   gem 'minitest', '~> 5.25'
   gem 'minitest-spec-rails'
