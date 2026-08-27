@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :advisories, only: [:new, :show, :index, :create] do
     collection do
       post "preview"
+      get "thanks"
     end
   end
 end

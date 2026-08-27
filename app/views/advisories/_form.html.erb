@@ -1,4 +1,15 @@
 <%= form_for presenter, :url => preview_advisories_path, :html => {:id => "advisory-form", :class => ""} do |f| %>
+  <% if presenter.advisory.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <p>Please fix the following before submitting:</p>
+      <ul>
+        <% presenter.advisory.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="form-group required">
     <%= f.label :gem, :class => "control-label" %>
     <div class="form-field">
@@ -84,9 +95,9 @@
 
   <div class="form-group">
 
-    <%= f.submit "Preview", :class => "btn btn-lg btn-primary" %>
+    <%= f.submit preview_label, :class => "btn btn-lg btn-primary", :data => { :disable_with => false } %>
     <% if @submit %>
-      <%= f.submit "Submit for review", :id => "submit-review", :class => "btn btn-lg btn-danger", :formaction => advisories_path %>
+      <%= f.submit "Submit for review", :id => "submit-review", :class => "btn btn-lg btn-danger", :formaction => advisories_path, :data => { :disable_with => false } %>
     <% end %>
   </div>
 

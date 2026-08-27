@@ -67,6 +67,57 @@ class AdvisorySubmissionTest < ApplicationSystemTestCase
     assert_equal 'reporter@example.com', advisory.submitter_email
   end
 
+  test 'previewing an incomplete advisory comes back with the errors listed' do
+    visit new_advisory_path
+    fill_in_advisory_form
+    fill_in 'advisory_presenter_submitter_email', with: ''
+
+    assert_no_difference 'RubymemAdvisory.count' do
+      click_button 'Preview'
+    end
+
+    within '#error_explanation' do
+      assert_text "Submitter email can't be blank"
+    end
+    # No preview and no way to submit until the advisory is complete.
+    assert_no_selector 'pre'
+    assert_no_selector '#submit-review'
+    assert_field 'advisory_presenter_gem', with: 'leaky_gem'
+
+    # The submitter can fix the field and carry on from the same page.
+    fill_in 'advisory_presenter_submitter_email', with: 'reporter@example.com'
+    click_button 'Preview'
+
+    assert_no_selector '#error_explanation'
+    assert_text 'Advisory YAML'
+    assert_selector '#submit-review'
+  end
+
+  test 'a rejected submission can be fixed on the preview page and sent again' do
+    visit new_advisory_path
+    fill_in_advisory_form
+    click_button 'Preview'
+    # Blank a required field after previewing, so create is what rejects it.
+    fill_in 'advisory_presenter_url', with: ''
+
+    assert_no_difference 'RubymemAdvisory.count' do
+      find('#submit-review').click
+    end
+
+    within '#error_explanation' do
+      assert_text "Url can't be blank"
+    end
+
+    fill_in 'advisory_presenter_url', with: 'https://example.com/leak'
+
+    assert_difference 'RubymemAdvisory.count', 1 do
+      find('#submit-review').click
+    end
+
+    assert_text 'Awesome! Thanks for your help.'
+    assert_equal thanks_advisories_path, page.current_path
+  end
+
   test 'a submitted advisory is not published on the archive until it is imported' do
     visit new_advisory_path
     fill_in_advisory_form

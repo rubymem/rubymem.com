@@ -6,11 +6,5 @@
 
 $(document).ready(function () {
   $('#advisory-form').validator();
-
-  $("#submit-review-link").on("click", function(e) {
-    e.preventDefault();
-
-    $("#submit-review").trigger("click");
-  });
 });
 

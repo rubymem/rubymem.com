@@ -57,7 +57,7 @@ class AdvisoriesControllerTest < ActionDispatch::IntegrationTest
       end
     end
 
-    assert_response :success
+    assert_redirected_to thanks_advisories_path
     advisory = RubymemAdvisory.last
 
     # we parsed out line separated strings properly
@@ -70,6 +70,7 @@ class AdvisoriesControllerTest < ActionDispatch::IntegrationTest
     {advisory_presenter: {
       gem: "fake",
       date: "2016-12-31",
+      url: "https://example.com/leak",
       title: "this is a title",
       description: "desc",
       patched_versions: "~> 1.2.3\r\n> 1.2",

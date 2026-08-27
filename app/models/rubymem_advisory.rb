@@ -39,6 +39,12 @@ class RubymemAdvisory < ActiveRecord::Base
                 "related",
                 "related_links"]
 
+  # Imported advisories come from the advisory database, where every file
+  # carries these five. Submissions have to provide them too, plus a way to
+  # reach the person reporting the leak.
+  validates :gem, :url, :title, :date, :description, presence: true
+  validates :submitter_email, presence: true, unless: :imported?
+
   scope :recent, -> { order(date: :desc) }
   scope :imported, -> { where(imported: true) }
 
@@ -52,6 +58,8 @@ class RubymemAdvisory < ActiveRecord::Base
   end
 
   def to_param
-    identifier.split(".")[0]
+    # Submissions have no identifier until they are reviewed and imported, and
+    # they are not published, so they fall back to the id.
+    identifier&.split(".")&.first || id&.to_s
   end
 end
