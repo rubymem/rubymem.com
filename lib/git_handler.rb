@@ -10,7 +10,7 @@ class GitHandler
   end
 
   def fetch_and_update_repo!
-    if File.exists?(local_path)
+    if File.exist?(local_path)
       output, process = Open3.capture2e("cd #{local_path} && git pull")
       unless process.success?
         raise "#{klass_name} - something went wrong pulling: #{output}"

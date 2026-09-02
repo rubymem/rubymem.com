@@ -46,6 +46,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'binding_of_caller'
 
+  gem 'capybara'
   gem 'minitest-spec-rails'
   gem 'minitest-reporters'
   gem 'faker'

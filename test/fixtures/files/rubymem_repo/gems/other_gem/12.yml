@@ -1,0 +1,9 @@
+---
+gem: other_gem
+url: https://github.com/other_gem/other_gem/issues/12
+title: Unbounded cache growth
+date: 2016-01-15
+description: |
+  The internal cache is never evicted.
+patched_versions:
+  - "~> 2.1"

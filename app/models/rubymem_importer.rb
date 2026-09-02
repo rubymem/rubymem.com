@@ -25,7 +25,7 @@ class RubymemImporter
       if old_adv.nil?
         created_adv = RubymemAdvisory.create!(new_adv.to_h)
       else
-        old_adv.update_attributes!(new_adv.to_h)
+        old_adv.update!(new_adv.to_h)
       end
     end
   end
@@ -44,7 +44,9 @@ class RubymemImporter
   end
 
   def parse(ymlfile)
-    hsh = YAML.load_file(ymlfile)
+    # Psych 4 (Ruby 3.1+) made `YAML.load_file` safe by default, and the
+    # advisory files carry a `date:` field, so Date has to be permitted.
+    hsh = YAML.safe_load(File.read(ymlfile), permitted_classes: [Date, Time])
     everything = {"filepath" => ymlfile}.merge(hsh)
     RubymemAdapter.new(everything)
   end
