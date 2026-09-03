@@ -66,6 +66,21 @@ class AdvisoriesControllerTest < ActionDispatch::IntegrationTest
     assert_equal false, advisory.imported
   end
 
+  # The review app returned a 500 on a real submission after SendGrid started
+  # rejecting the credentials with "535 Authentication failed: account
+  # disabled". The advisory was already committed at that point, so the
+  # submitter saw an error page for a submission that had in fact been stored.
+  test "create still thanks the submitter when the notification cannot be delivered" do
+    RubymemMailer.stub :new_advisory, ->(_id) { raise Net::SMTPAuthenticationError, '535 Authentication failed: account disabled' } do
+      assert_difference 'RubymemAdvisory.count', 1 do
+        post advisories_path, params: advisory_params
+      end
+    end
+
+    assert_redirected_to thanks_advisories_path
+    assert_equal false, RubymemAdvisory.last.imported
+  end
+
   def advisory_params
     {advisory_presenter: {
       gem: "fake",
