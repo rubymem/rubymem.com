@@ -21,9 +21,6 @@ gem 'drb'
 gem 'logger'
 gem 'mutex_m'
 gem 'ostruct'
-# concurrent-ruby >= 1.3.5 dropped its implicit `require "logger"`, which breaks
-# ActiveSupport::LoggerThreadSafeLevel on Rails 7.0. Unpin on Rails 7.1+.
-gem 'concurrent-ruby', '1.3.4'
 
 gem 'sass-rails', '~> 6.0'
 gem 'puma', '~> 6.6'

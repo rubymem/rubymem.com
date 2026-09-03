@@ -126,7 +126,7 @@ GEM
     childprocess (5.1.0)
       logger (~> 1.5)
     coderay (1.1.3)
-    concurrent-ruby (1.3.4)
+    concurrent-ruby (1.3.8)
     crass (1.0.7)
     date (3.5.1)
     debug_inspector (1.2.0)
@@ -347,7 +347,6 @@ DEPENDENCIES
   capistrano-rails (~> 1.1)
   capistrano-rails-console
   capybara
-  concurrent-ruby (= 1.3.4)
   drb
   factory_bot_rails
   faker
