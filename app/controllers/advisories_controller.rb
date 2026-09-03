@@ -27,7 +27,7 @@ class AdvisoriesController < ApplicationController
     @advisory = RubymemAdvisory.new(processed_params)
 
     if @advisory.save
-      RubymemMailer.new_advisory(@advisory.id).deliver_now
+      notify_maintainers(@advisory)
       redirect_to thanks_advisories_path
     else
       prepare_preview
@@ -39,6 +39,27 @@ class AdvisoriesController < ApplicationController
   end
 
   private
+
+  # The submission is already stored by the time we get here, so a mail failure
+  # must not cost the submitter their confirmation page: they would only submit
+  # the same advisory again. The advisory is still in the database for the
+  # import flow to pick up, so the delivery failure is ours to notice in the
+  # logs, not theirs to work around.
+  #
+  # StandardError rather than a list of SMTP and socket errors: the transport
+  # failures alone span Net::SMTPAuthenticationError, Net::OpenTimeout,
+  # SocketError, OpenSSL::SSL::SSLError and more, and a list that misses one
+  # costs a submitter their confirmation again. It does mean a broken mailer
+  # template would be swallowed too, which is what the assert_emails
+  # expectation in the create test is there to catch.
+  def notify_maintainers(advisory)
+    RubymemMailer.new_advisory(advisory.id).deliver_now
+  rescue StandardError => e
+    Rails.logger.error(
+      "Could not notify the maintainers about advisory #{advisory.id}: " \
+      "#{e.class}: #{e.message}\n#{e.backtrace&.join("\n")}"
+    )
+  end
 
   # The form is driven by the presenter, every action that renders it needs one.
   def assign_presenter

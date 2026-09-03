@@ -1,5 +1,7 @@
 {
-  "addons": ["heroku-postgresql"],
+  "addons": [
+    "heroku-postgresql"
+  ],
   "buildpacks": [
     {
       "url": "heroku/ruby"
@@ -24,10 +26,10 @@
     "SECRET_KEY_BASE": {
       "required": true
     },
-    "SENDGRID_PASSWORD": {
+    "SENDGRID_USERNAME": {
       "required": true
     },
-    "SENDGRID_USERNAME": {
+    "SENDGRID_PASSWORD": {
       "required": true
     }
   },
@@ -40,5 +42,32 @@
   "scripts": {
     "postdeploy": "bundle exec rake db:schema:load"
   },
-  "stack": "heroku-22"
+  "stack": "heroku-26",
+  "environments": {
+    "review": {
+      "env": {
+        "LANG": {
+          "required": true
+        },
+        "RACK_ENV": {
+          "required": true
+        },
+        "RAILS_ENV": {
+          "required": true
+        },
+        "RAILS_LOG_TO_STDOUT": {
+          "required": true
+        },
+        "RAILS_SERVE_STATIC_FILES": {
+          "required": true
+        },
+        "SECRET_KEY_BASE": {
+          "required": true
+        },
+        "DISABLE_MAIL_DELIVERY": {
+          "value": "true"
+        }
+      }
+    }
+  }
 }
