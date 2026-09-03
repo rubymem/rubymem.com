@@ -1,0 +1,20 @@
+<div id="rubymem">
+  <%= render :partial => "shared/header" %> 
+  <section>
+    <div class="col-sm-6 col-sm-offset-3">
+      <h1>Awesome! Thanks for your help.</h1>
+      <p>Your advisory has been recorded and the reviewers have been emailed. It is
+      not published yet, so it will not show up in the
+      <%= link_to "archive", advisories_path %> or the
+      <%= link_to "feed", feed_path %> for now.</p>
+      <p>What happens next: a reviewer reads it, and if it holds up they add it to
+      the <a href="https://github.com/rubymem/ruby-mem-advisory-db">advisory
+      database</a>. From there it is imported and appears on the site. If anything
+      about your report is unclear, they will get in touch through the email
+      address you gave us.</p>
+      <p>Want to move it along yourself? Open a pull request against the
+      <a href="https://github.com/rubymem/ruby-mem-advisory-db">advisory
+      database</a> with the YAML from the preview page.</p>
+    </div>
+  </section>
+</div>

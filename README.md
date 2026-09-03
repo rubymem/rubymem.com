@@ -25,6 +25,35 @@ can remove all records from the database and then call:
 RubymemImporter.new.import!
 ```
 
+## Advisory submission flow
+
+Submitting an advisory is a two step flow, and previewing deliberately stores
+nothing: the preview page invites the submitter to revise the generated YAML, or
+to skip the site and open the pull request against the
+[advisory database](https://github.com/rubymem/ruby-mem-advisory-db) themselves.
+
+| request | valid | invalid |
+| --- | --- | --- |
+| `GET /advisories/new` | the form | |
+| `POST /advisories/preview` | the generated YAML plus a "Submit for review" button | back to the form with the errors, 422 |
+| `POST /advisories` | stores the advisory, notifies the reviewers, redirects | back to the preview with the errors, 422 |
+| `GET /advisories/thanks` | the thank-you page, safe to refresh | |
+
+Notes for anyone changing this:
+
+- Only `create` writes. `preview` builds an unsaved `RubymemAdvisory` so it can
+  validate and render the YAML, and never touches the database.
+- `create` redirects rather than renders, so refreshing cannot submit twice.
+- The submit buttons carry `disable_with: false` on purpose. A page that comes
+  back with errors has to let the submitter fix a field and submit again from
+  that same page.
+- The form is bound to `AdvisoryPresenter`, not to the record, so the params
+  arrive under `advisory_presenter` and the line separated version fields are
+  split in `AdvisoriesController#processed_params`.
+- A submission is stored with `imported: false` and no `identifier`, so it stays
+  off the archive and out of the feed until a reviewer merges it into the
+  advisory database and `RubymemImporter` picks it up.
+
 ## Testing
 
 After making changes, make sure you run the test suite:

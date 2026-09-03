@@ -1,22 +1,76 @@
 require 'test_helper'
 
 class RubymemAdvisoryTest < ActiveSupport::TestCase
+  # The form marks gem, url, title, date, description and submitter_email as
+  # required, the model has to enforce the same set.
+  REQUIRED_ATTRIBUTES = %i[gem url title date description].freeze
+
+  test "an advisory carrying every required attribute is valid" do
+    assert FactoryBot.build(:rubymem_advisory).valid?
+  end
+
+  REQUIRED_ATTRIBUTES.each do |attribute|
+    test "#{attribute} is required" do
+      advisory = FactoryBot.build(:rubymem_advisory, attribute => nil)
+
+      refute advisory.valid?
+      assert_includes advisory.errors[attribute], "can't be blank"
+    end
+
+    test "#{attribute} cannot be blank" do
+      advisory = FactoryBot.build(:rubymem_advisory, attribute => '')
+
+      refute advisory.valid?
+      assert_includes advisory.errors[attribute], "can't be blank"
+    end
+  end
+
+  test "a submission has to say who reported the leak" do
+    advisory = FactoryBot.build(:rubymem_advisory, submitter_email: nil, imported: false)
+
+    refute advisory.valid?
+    assert_includes advisory.errors[:submitter_email], "can't be blank"
+  end
+
+  test "an imported advisory has no submitter" do
+    # The advisory database carries no submitter_email, the importer would not
+    # be able to store a single file if this were required.
+    advisory = FactoryBot.build(:rubymem_advisory, submitter_email: nil, imported: true)
+
+    assert advisory.valid?
+  end
+
+  test "the optional fields stay optional" do
+    advisory = FactoryBot.build(:rubymem_advisory, unaffected_versions: [],
+                                patched_versions: [], related_links: [])
+
+    assert advisory.valid?, advisory.errors.full_messages.join(', ')
+  end
+
+  test "an empty advisory reports every missing attribute at once" do
+    advisory = RubymemAdvisory.new
+
+    refute advisory.valid?
+    assert_equal (REQUIRED_ATTRIBUTES + [:submitter_email]).sort,
+                 advisory.errors.attribute_names.sort
+  end
+
   test "generate_yaml exposes the advisory attributes and drops the blank ones" do
     advisory = FactoryBot.create(:rubymem_advisory,
                                  gem: 'leaky_gem',
                                  title: 'Memory leak',
                                  description: 'It leaks.',
-                                 url: nil,
                                  patched_versions: ['>= 1.2.3'],
-                                 unaffected_versions: [])
+                                 unaffected_versions: [],
+                                 related_links: [])
 
     yaml = YAML.safe_load(advisory.generate_yaml, permitted_classes: [Date])
 
     assert_equal 'leaky_gem', yaml['gem']
     assert_equal 'Memory leak', yaml['title']
     assert_equal ['>= 1.2.3'], yaml['patched_versions']
-    refute yaml.key?('url'), 'blank attributes must not reach the YAML'
     refute yaml.key?('unaffected_versions'), 'empty arrays must not reach the YAML'
+    refute yaml.key?('related_links'), 'empty arrays must not reach the YAML'
     # Internal bookkeeping stays out of the published advisory.
     %w[id ident identifier imported submitter_email created_at updated_at].each do |key|
       refute yaml.key?(key), "#{key} must not reach the YAML"
@@ -66,18 +120,24 @@ class RubymemAdvisoryTest < ActiveSupport::TestCase
     assert_equal 'leaky_gem-670', advisory.to_param
   end
 
-  # Characterization tests: these lock in behavior that is currently wrong, so a
-  # fix has to update them deliberately rather than by accident.
+  test "to_param falls back to the id for an advisory submitted through the form" do
+    # `create` does not assign an identifier, the advisory only gets one once a
+    # reviewer imports it.
+    submitted = FactoryBot.create(:rubymem_advisory, identifier: nil)
 
-  test "CHARACTERIZATION to_param raises for an advisory submitted through the form" do
-    # `create` never assigns an identifier, so linking to a submitted advisory
-    # blows up instead of rendering.
-    submitted = RubymemAdvisory.create!(gem: 'leaky_gem', title: 'Memory leak')
-
-    assert_nil submitted.identifier
-    assert_raises(NoMethodError) { submitted.to_param }
+    assert_equal submitted.id.to_s, submitted.to_param
+    # The symptom this guards against: linking to a submission used to raise.
+    assert_equal "/advisories/#{submitted.id}",
+                 Rails.application.routes.url_helpers.advisory_path(submitted)
   end
 
+  test "to_param is nil safe for an advisory that was never stored" do
+    assert_nil RubymemAdvisory.new.to_param
+  end
+
+  # Characterization test: this locks in behavior that is still wrong, so a fix
+  # has to update it deliberately rather than by accident. Fixing it means
+  # changing how the route handles dots, not just to_param.
   test "CHARACTERIZATION an identifier containing a dot cannot round trip" do
     # to_param truncates at the dot, and `show` looks the record up by the full
     # identifier, so the generated URL cannot find it.
@@ -87,11 +147,9 @@ class RubymemAdvisoryTest < ActiveSupport::TestCase
     assert_nil RubymemAdvisory.find_by(identifier: advisory.to_param)
   end
 
-  test "CHARACTERIZATION an advisory has no validations at all" do
-    # Anything the submission form posts is accepted, including nothing.
-    assert RubymemAdvisory.new.valid?
-    assert_difference 'RubymemAdvisory.count', 1 do
-      RubymemAdvisory.create!
+  test "an empty advisory cannot be stored" do
+    assert_no_difference 'RubymemAdvisory.count' do
+      assert_raises(ActiveRecord::RecordInvalid) { RubymemAdvisory.create! }
     end
   end
 end

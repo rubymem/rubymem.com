@@ -38,7 +38,7 @@ class RubymemImporterTest < ActiveSupport::TestCase
   test "re-importing updates the existing advisory instead of duplicating it" do
     importer.import!
     advisory = RubymemAdvisory.find_by!(identifier: 'leaky_gem-670')
-    advisory.update!(title: 'Stale title', imported: false)
+    advisory.update!(title: 'Stale title')
 
     assert_no_difference 'RubymemAdvisory.count' do
       importer.import!

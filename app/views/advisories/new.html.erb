@@ -5,22 +5,28 @@
 
     <div class="new-vuln">
       <h3>Advisory form</h3>
-      <%= render :partial => "form", :locals => { :presenter => AdvisoryPresenter.new(RubymemAdvisory.new) } %>
+      <%= render :partial => "form", :locals => { :presenter => @presenter, :preview_label => "Preview" } %>
     </div>
 
     <div class="new-vuln">
       <h2>Report a new leak</h2>
       <p>Hey! Thanks for taking the time to do this. Your submission helps the community. All submissions to this website are ultimately vetted on the <a href="https://github.com/rubymem/ruby-mem-advisory-db">GitHub repository</a>.</p>
-      <h4>Reporting a leak is a simple process.</h4>
+      <h4>Reporting a leak takes three steps.</h4>
       <ol>
-        <li>
-          If it is a vulnerability, discreetly disclose the flaw to the gem maintainer(s).
-          <br/>
-          Please be polite! Open source maintainers are usually unpaid volunteers, and everyone deserves a little courtesy.
-        </li>
-        <li>Try to figure out what versions are affected by the flaw, and whether a patch can be released.</li>
-        <li>Fill out the form to the left:</li>
+        <li>Fill out the form to the left.</li>
+        <li>Review the preview. We turn your report into the YAML that goes into the
+          advisory database, so you can revise anything that looks out of place.</li>
+        <li>Submit for review. That is when we store it and email the reviewers,
+          nothing is saved before it.</li>
       </ol>
+      <h4>Before you start</h4>
+      <ul>
+        <li>If it is a vulnerability, discreetly disclose the flaw to the gem
+          maintainer(s) first. Please be polite! Open source maintainers are usually
+          unpaid volunteers, and everyone deserves a little courtesy.</li>
+        <li>Try to figure out what versions are affected by the flaw, and whether a
+          patch can be released.</li>
+      </ul>
       <br/>
     </div>
 
