@@ -26,8 +26,11 @@
     "SECRET_KEY_BASE": {
       "required": true
     },
-    "DISABLE_MAIL_DELIVERY": {
-      "value": "true"
+    "SENDGRID_USERNAME": {
+      "required": true
+    },
+    "SENDGRID_PASSWORD": {
+      "required": true
     }
   },
   "formation": {
@@ -39,5 +42,32 @@
   "scripts": {
     "postdeploy": "bundle exec rake db:schema:load"
   },
-  "stack": "heroku-26"
+  "stack": "heroku-26",
+  "environments": {
+    "review": {
+      "env": {
+        "LANG": {
+          "required": true
+        },
+        "RACK_ENV": {
+          "required": true
+        },
+        "RAILS_ENV": {
+          "required": true
+        },
+        "RAILS_LOG_TO_STDOUT": {
+          "required": true
+        },
+        "RAILS_SERVE_STATIC_FILES": {
+          "required": true
+        },
+        "SECRET_KEY_BASE": {
+          "required": true
+        },
+        "DISABLE_MAIL_DELIVERY": {
+          "value": "true"
+        }
+      }
+    }
+  }
 }
