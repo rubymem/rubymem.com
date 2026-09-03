@@ -27,7 +27,6 @@ gem 'puma', '~> 6.6'
 gem 'pg'
 gem 'terser'
 gem 'jquery-rails'
-gem 'turbolinks', '~> 5'
 
 # views
 gem 'bootstrap-sass'
