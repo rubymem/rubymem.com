@@ -1,8 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-@import "font-awesome";
-
 section {
   @include make-row();
 }

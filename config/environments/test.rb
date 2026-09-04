@@ -22,8 +22,10 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Raise exceptions instead of rendering exception templates.
-  config.action_dispatch.show_exceptions = false
+  # Render the error responses the way production does, so a test asserting a
+  # status gets the status a visitor would get (a missing record is a 404).
+  # Rails 7.1 has the finer-grained `:rescuable` for this.
+  config.action_dispatch.show_exceptions = true
 
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false

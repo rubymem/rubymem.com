@@ -26,7 +26,9 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  config.action_mailer.delivery_method = :letter_opener
+  # Mails are written to tmp/mails instead of being sent. Rails' own mailer
+  # previews at /rails/mailers render them in the browser.
+  config.action_mailer.delivery_method = :file
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
@@ -48,8 +50,4 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-
-  # Use an evented file watcher to asynchronously detect changes in source code,
-  # routes, locales, etc. This feature depends on the listen gem.
-  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
