@@ -30,7 +30,6 @@ gem 'jquery-rails'
 
 # views
 gem 'bootstrap-sass'
-gem "font-awesome-rails"
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 

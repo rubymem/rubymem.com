@@ -122,8 +122,6 @@ GEM
     ffi (1.17.4-aarch64-linux-gnu)
     ffi (1.17.4-arm64-darwin)
     ffi (1.17.4-x86_64-linux-gnu)
-    font-awesome-rails (4.7.0.9)
-      railties (>= 3.2, < 9.0)
     globalid (1.4.0)
       activesupport (>= 6.1)
     i18n (1.15.2)
@@ -296,7 +294,6 @@ DEPENDENCIES
   capybara
   drb
   factory_bot_rails
-  font-awesome-rails
   jquery-rails
   letter_opener
   listen (~> 3.9)
