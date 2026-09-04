@@ -248,10 +248,6 @@ GEM
       sprockets-rails
       tilt
     securerandom (0.4.1)
-    spring (4.7.0)
-    spring-watcher-listen (2.1.0)
-      listen (>= 2.7, < 4.0)
-      spring (>= 4)
     sprockets (4.4.1)
       concurrent-ruby (~> 1.1)
       logger
@@ -308,8 +304,6 @@ DEPENDENCIES
   puma (~> 6.6)
   rails (~> 7.0.10)
   sass-rails (~> 6.0)
-  spring
-  spring-watcher-listen (~> 2.1.0)
   terser
   will_paginate
   will_paginate-bootstrap

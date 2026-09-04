@@ -40,8 +40,6 @@ jobs:
       PGUSER: postgres
       PGPASSWORD: postgres
       BUNDLE_GEMFILE: ${{ matrix.gemfile }}
-      # bin/rails would otherwise boot through the spring binstub.
-      DISABLE_SPRING: 1
 
     steps:
       - uses: actions/checkout@v4
