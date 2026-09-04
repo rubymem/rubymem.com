@@ -34,20 +34,13 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 
 group :development, :test do
-  gem 'better_errors'
-
-  gem 'binding_of_caller'
-
   gem 'capybara'
 
   # Rails 7.0 is not compatible with minitest 6 (it drops minitest/mock and
   # other APIs rails/test_help relies on).
   gem 'minitest', '~> 5.25'
-  gem 'minitest-reporters'
   gem 'factory_bot_rails'
 end
 
 group :development do
-  gem 'listen', '~> 3.9'
-  gem 'letter_opener'
 end
