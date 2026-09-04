@@ -41,6 +41,3 @@ group :development, :test do
   gem 'minitest', '~> 5.25'
   gem 'factory_bot_rails'
 end
-
-group :development do
-end
