@@ -23,7 +23,7 @@ gem 'mutex_m'
 gem 'ostruct'
 
 gem 'sass-rails', '~> 6.0'
-gem 'puma', '~> 6.6'
+gem 'puma', '~> 7.2'
 gem 'pg'
 gem 'terser'
 gem 'jquery-rails'
